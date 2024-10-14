@@ -14,18 +14,8 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            background-color: #ac1212;
             position: relative;
-        }
-
-        /* Estilo de fundo com gradiente */
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, white 50%, red 50%);
-            z-index: 0; /* Coloca o fundo atrás do conteúdo */
         }
 
         .container {
@@ -202,7 +192,6 @@
     </style>
 </head>
 <body>
-    <div class="background"></div> <!-- Fundo dividido -->
     <div class="restricted-area">Área restrita</div>
 
     <div class="container">
@@ -214,7 +203,7 @@
         <p>Seja bem-vindo(a) em nosso site. Aqui você encontrará vários fatos e acontecimentos que ocorrem dentro do servidor, partiu?.</p>
 
         <div class="buttons">
-            <button class="btn" onclick="playClickSound(); loadPage('diferenciais.html'); addNotification('Redirecionando para Diferenciais')">Diferenciais</button>
+            <button class="btn" onclick="playClickSound(); loadPage('diferenciais.html'); addNotification('Redirecionando')">Diferenciais</button>
             <button class="btn" onclick="playClickSound(); redirectToRoblox(); addNotification('Redirecionando para o roblox')">Servidores</button>
         </div>
     </div>
@@ -253,7 +242,7 @@
             notification.classList.add("notification");
             notification.textContent = message;
 
-            // Criação da barra de progresso
+        
             const progressBar = document.createElement("div");
             progressBar.classList.add("progress-bar");
 
@@ -264,7 +253,7 @@
 
             document.getElementById("notification-container").appendChild(notification);
 
-            // Iniciar a animação da barra de progresso
+        
             let width = 0;
             const interval = setInterval(() => {
                 if (width >= 100) {
@@ -274,24 +263,26 @@
                     width++;
                     progress.style.width = width + "%";
                 }
-            }, 30); // Aumente ou diminua a duração da animação ajustando o tempo aqui
+            }, 30); 
         }
 
-        // Geração de partículas
-        setInterval(() => {
-            const particle = document.createElement('div');
-            const size = Math.random() * 10 + 5; // Tamanho aleatório
-            particle.classList.add('particle');
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + 'vw'; // Posição aleatória na largura da tela
-            document.body.appendChild(particle);
+       
+        function createParticles() {
+            const numParticles = 20;
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement("div");
+                particle.classList.add("particle");
+                particle.style.width = `${Math.random() * 10 + 5}px`;
+                particle.style.height = particle.style.width;
+                particle.style.left = `${Math.random() * 100}vw`;
+                document.body.appendChild(particle);
+                setTimeout(() => {
+                    particle.remove();
+                }, 3000);
+            }
+        }
 
-            // Remover a partícula após um tempo
-            setTimeout(() => {
-                particle.remove();
-            }, 3000); // Remover após 3 segundos
-        }, 200); // Geração de partículas a cada 200ms
+        setInterval(createParticles, 1000);
     </script>
 </body>
 </html>
