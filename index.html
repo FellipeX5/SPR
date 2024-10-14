@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>São Paulo Roleplay, Brasil</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Estilo de fundo com gradiente */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, white 50%, red 50%);
+            z-index: 0; /* Coloca o fundo atrás do conteúdo */
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: move 2s ease-in-out infinite;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: move 2s ease-in-out infinite;
+        }
+
+        .profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 2rem;
+            animation: move 2s ease-in-out infinite;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .btn:hover {
+            background-color: #FFD700;
+            color: #4A007E;
+            transform: scale(1.1);
+            animation: move 0.5s ease-in-out;
+        }
+
+        .restricted-area {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .restricted-area:hover {
+            background-color: white;
+            color: #4A007E;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            visibility: hidden;
+            z-index: 10;
+        }
+
+        .loading-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid white;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes move {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .particle {
+            position: absolute;
+            bottom: -50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: rise 3s linear infinite;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Estilo de notificação */
+        #notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .notification {
+            background-color: #FFD700;
+            color: #4A007E;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            animation: fadeInOut 3s forwards;
+            position: relative; /* Adicione esta linha para permitir posicionamento relativo */
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.3); /* Mudando a cor para um cinza claro */
+            border-radius: 5px;
+            overflow: hidden;
+            position: absolute; /* Mova a barra para a parte inferior da notificação */
+            bottom: 10px; /* Ajuste a distância do fundo da notificação */
+            left: 0;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background-color: #A9A9A9; /* Cor da barra de progresso para um cinza mais escuro */
+            transition: width 0.3s;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10%, 90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div> <!-- Fundo dividido -->
+    <div class="restricted-area">Área restrita</div>
+
+    <div class="container">
+        <div class="profile">
+            <img src="https://via.placeholder.com/100" alt="Foto do usuário">
+            <h1>Bem-vindo, [Nome do Usuário]</h1>
+        </div>
+
+        <p>Seja bem-vindo(a) em nosso site. Aqui você encontrará vários fatos e acontecimentos que ocorrem dentro do servidor, partiu?.</p>
+
+        <div class="buttons">
+            <button class="btn" onclick="playClickSound(); loadPage('diferenciais.html'); addNotification('Redirecionando para Diferenciais')">Diferenciais</button>
+            <button class="btn" onclick="playClickSound(); redirectToRoblox(); addNotification('Redirecionando para o roblox')">Servidores</button>
+        </div>
+    </div>
+
+    <!-- Contêiner de notificações -->
+    <div id="notification-container"></div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-circle"></div>
+        <p style="margin-left: 20px;">Carregando...</p>
+    </div>
+
+    <script>
+        function redirectToRoblox() {
+            document.getElementById("loadingOverlay").style.visibility = "visible";
+            setTimeout(function() {
+                window.location.href = "https://www.roblox.com/pt/games/8392818501/S-o-Paulo-Roleplay-Brasil";
+            }, 2000);
+        }
+
+        function loadPage(page) {
+            document.getElementById("loadingOverlay").style.visibility = "visible";
+            setTimeout(function() {
+                window.location.href = page;
+            }, 2000);
+        }
+
+        function playClickSound() {
+            const audio = new Audio('caminho/para/seu/audio.mp3');
+            audio.play();
+        }
+
+        // Sistema de notificação
+        function addNotification(message) {
+            const notification = document.createElement("div");
+            notification.classList.add("notification");
+            notification.textContent = message;
+
+            // Criação da barra de progresso
+            const progressBar = document.createElement("div");
+            progressBar.classList.add("progress-bar");
+
+            const progress = document.createElement("div");
+            progress.classList.add("progress");
+            progressBar.appendChild(progress);
+            notification.appendChild(progressBar);
+
+            document.getElementById("notification-container").appendChild(notification);
+
+            // Iniciar a animação da barra de progresso
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    notification.remove();
+                } else {
+                    width++;
+                    progress.style.width = width + "%";
+                }
+            }, 30); // Aumente ou diminua a duração da animação ajustando o tempo aqui
+        }
+
+        // Geração de partículas
+        setInterval(() => {
+            const particle = document.createElement('div');
+            const size = Math.random() * 10 + 5; // Tamanho aleatório
+            particle.classList.add('particle');
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + 'vw'; // Posição aleatória na largura da tela
+            document.body.appendChild(particle);
+
+            // Remover a partícula após um tempo
+            setTimeout(() => {
+                particle.remove();
+            }, 3000); // Remover após 3 segundos
+        }, 200); // Geração de partículas a cada 200ms
+    </script>
+</body>
+</html>

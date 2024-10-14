@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eagle Vision - Diferenciais</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #006400; /* Cor de fundo verde */
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            width: 80%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        /* Galeria de fotos */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid white;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1); /* Aumenta a imagem ao passar o cursor */
+        }
+
+        .restricted-area {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .restricted-area:hover {
+            background-color: white;
+            color: #006400;
+        }
+    </style>
+</head>
+<body>
+    <div class="restricted-area">Área restrita</div>
+
+    <div class="container">
+        <!-- Seção de perfil com foto -->
+        <div class="profile">
+            <img src="https://via.placeholder.com/100" alt="Foto do usuário">
+            <h1>Diferenciais da Eagle Vision</h1>
+        </div>
+
+        <p>Na Eagle Vision, oferecemos servidores com desempenho de ponta, proteção avançada contra exploits, suporte dedicado 24/7, e uma comunidade ativa para garantir a melhor experiência de jogo no GTA SAMP.</p>
+        <p>Confira algumas fotos dos nossos eventos e momentos importantes:</p>
+        
+        
+        <div class="gallery">
+            <img src="images/img1.png" alt="Foto 1">
+            <img src="images/img2.jpg" alt="Foto 2">
+            <img src="images/img3.jpg" alt="Foto 3">
+            <img src="images/img4.jpg" alt="Foto 4">
+            <img src="images/img5.jpg" alt="Foto 5">
+        </div>
+    </div>
+</body>
+</html>
